@@ -2,21 +2,15 @@
     //Importar la clase a utilizar
     require_once('clases/Persona.php');
 
-    //Instanciar una clase (creacion de un objeto)
-    $persona1 = new Persona("Pablo", "alimana", 29);
-    $persona2 = new Persona("Karla", "VALERO", 32);
+    $persona1 = new Persona();
 
-    /* //Acceder al objeto y asignar informacion
-    $persona1->setNombre("jUAn");
-    $persona1->apellido = "Pablo";
-    $persona1->edad = 2;
+    $persona2 = new Mexicano();
+    $persona2->setApellido("Dominguez", "BeniTes");
 
-    $persona2 = new Persona;
-    
-    $persona2->setNombre("beni");
-    $persona2->apellido = "Suárez";
-    $persona2->edad = 10; */
+    $persona3 = new Americano();
 
-    echo "El nombre de la persona 1 es ".$persona1->getNombre();
+    var_dump($persona1);
     echo "<br>";
-    echo "El nombre de la persona 2 es ".$persona2->getNombre();
+    var_dump($persona2);
+    echo "<br>";
+    var_dump($persona3);

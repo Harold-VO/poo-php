@@ -2,25 +2,30 @@
 
 //Definir la clase Persona con sus propiedades
 class Persona{
-    public $nombre, $apellido, $edad;
+    public $nombre, $apellidoPaterno, $apellidoMaterno, $edad;
 
-    //Metodo constructor; suele usarse para darle valor a los atributos del objeto, es el primer metodo en ejecutarse y se llama automaticamente al crearlo
-    public function __construct($nombre, $apellido, $edad)
-    {
-        $this->nombre = strtolower($nombre);
-        $this->apellido = strtolower($apellido);
-        $this->edad = ($edad);
+    //Metodo en clase Padre
+    public function setApellido($apellidoPaterno, $apellidoMaterno){
+        $this->apellidoPaterno = $apellidoPaterno;
+        $this->apellidoMaterno = $apellidoMaterno;
     }
+}
 
-    /* public function setNombre($nombre){
-        //Acceder al valor de una propiedad de una clase
-        $this->nombre = strtolower($nombre);
-    } */
+//La clase Mexicano es una clase hija de la clase Persona, indicada por extends
+class Mexicano extends Persona{
+    //Sobre escribir atributos
+    public $estado, $municipio;
 
-    public function getNombre(){
-        //Retornar el valor de una propiedad de una clase
-        return ucwords($this->nombre);
+    //Sobre escribir metodos
+    public function setApellido($apellidoPaterno, $apellidoMaterno)
+    {
+        //Se extiende el metodo, agregando un mensaje
+        parent::setApellido($apellidoPaterno, $apellidoMaterno);
+        echo "Los apellidos se extendieron con exito.";
     }
 
 }
 
+class Americano extends Persona{
+     public $distrito;
+}
