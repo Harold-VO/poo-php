@@ -9,6 +9,10 @@ class Persona{
         $this->apellidoPaterno = $apellidoPaterno;
         $this->apellidoMaterno = $apellidoMaterno;
     }
+
+    public function getApellido(){
+        return ucwords($this->apellidoPaterno . " ". $this->apellidoMaterno);
+    }
 }
 
 //La clase Mexicano es una clase hija de la clase Persona, indicada por extends
@@ -16,12 +20,12 @@ class Mexicano extends Persona{
     //Sobre escribir atributos
     public $estado, $municipio;
 
-    //Sobre escribir metodos
+    //Extiende el metodo setApellido de la clase padre, Persona
     public function setApellido($apellidoPaterno, $apellidoMaterno)
     {
-        //Se extiende el metodo, agregando un mensaje
+        //La palabra reservada parent:: 
         parent::setApellido($apellidoPaterno, $apellidoMaterno);
-        echo "Los apellidos se extendieron con exito.";
+        echo "Los apellidos de la clase Mexicano se extendieron con exito.";
     }
 
 }
