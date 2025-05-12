@@ -1,34 +1,39 @@
 <?php
-    class MyClass{
-        public $public = "Public";
-        protected $protected = "Protected";
-        private $private = "Private";
+    //Las interfaces se definen solo nombre, y los metodos solo especifican los parametros.
+    interface operacionesInversas{
+        function raiz(float $numero):float;
+        function potencia(int $numero, int $potencia):int;
+    }
 
-        //Cuando no se define el encapsulamiento del metodo, por defecto es public
-        function printHello(){
-            echo $this->public . "<br>";
-            echo $this->protected . "<br>";
-            echo $this->private . "<br>";
+    //Una interfaz puede extender de otra utilizanod extends. 
+    interface operacionesBasicas extends operacionesInversas{
+        function suma(int $numero1, int $numero2):int;
+    }
+
+    //Para que la clase implemente una interfaz, se utiliza la palabra implements, el nombre de la interfaz y los metodos definidos en esta
+    class Resultado implements operacionesBasicas{
+        function raiz(float $numero): float
+        {
+            $resultado = sqrt($numero);
+            return $resultado;
+        }
+
+        function potencia(int $numero, int $potencia): int
+        {
+            $resultado = pow($numero,$potencia);
+            return $resultado;
+        }
+
+        function suma(int $numero1, int $numero2): int
+        {
+            $resultado = $numero1 + $numero2;
+            return $resultado;
         }
     }
 
-    $objeto = new MyClass;
-    
-    //Es por ello que imprime las variables protected y private
-    echo $objeto->printHello();
-    
-    /* Cuando se quiere acceder directamente a una variable protected/private marca error
-    echo $objeto->protected; */
-
-    class MyClass2 extends MyClass{
-        function printHello(){
-            echo $this->public . "<br>";
-            echo $this->protected . "<br>";
-            // echo $this->private . "<br>";
-        }
-    }
-
+    $objeto1 = new Resultado;
+    echo $objeto1->raiz(121);
     echo "<br>";
-    //Al extender MyClass2 de MyClass, la variable public y protected pueden utilizarse por la herencia, private no porque pertenece solo a la clase Padre.
-    $objeto2 = new MyClass2;
-    $objeto2->printHello();
+    echo $objeto1->potencia(5, 3);
+    echo "<br>";
+    echo $objeto1->suma(1,2);
