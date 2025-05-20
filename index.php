@@ -1,19 +1,19 @@
 <?php
+    //Importamos/utilizamos las clases CourseController y Course
+    use Controllers\CourseController;
+    use Models\Course;
 
-    /* Especificamos que se quiere usar el namespace de Humano1 y Humano2.
-        namespace \ clase 
-        
-        Se usa la palabra clave as para renombrar la clase Humano del namespace Humano2. Así evitar conflicto de nombre de clases*/
-    use Humano1\Humano;
-    use Humano2\Humano as Humano2;
-
-    require_once('Carpeta1/Humano.php');
-    require_once('Carpeta2/Humano.php');
-
-    $hum = new Humano;
-    $hum->saludar();
+    /* El metodo spl_autoload_register carga automaticamente clases, interfaces si no estan definidas */
+    spl_autoload_register(function ($clase){
+        if(file_exists(str_replace('\\' , '/' , $clase) . '.php')){
+            require_once (str_replace('\\' , '/' , $clase) . '.php');
+        }
+    });
+    
+    $ob1 = new CourseController;
+    $ob1->saludar();
 
     echo "<br>";
 
-    $hum2 = new Humano2;
-    $hum2->saludar();
+    $ob2 = new Course;
+    $ob2->saludar();
